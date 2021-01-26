@@ -11,21 +11,25 @@ import hn.mau.tarea1_1p.clases.Cemento;
  *
  * @author maureen
  */
-public class JPParametros extends javax.swing.JPanel {
+public class pnlParametros extends javax.swing.JPanel {
 
     /**
-     * Creates new form JPParametros
+     * Creates new form pnlParametros
      */
-    Cemento cm = new Cemento();
-    Ferreteria fm = new Ferreteria();
+   
+    Ferreteria fm = new Ferreteria();   
+   
 
-    public JPParametros() {
+    public pnlParametros() {
         initComponents();
+        
+         jTxtCapacidadCemento.setText(fm.cm.getCantMaxCemento() + "");
+        
         if ((jTxtCapacidadCemento.getText() != null && jTxtCapacidadCemento.getText().isEmpty())) {
-            if (cm.getCantMaxCemento() < 0) {
+            if (fm.cm.getCantMaxCemento() < 0) {
                 jTxtCapacidadCemento.setText("0");
             } else {
-                jTxtCapacidadCemento.setText(cm.getCantMaxCemento() + "");
+               
             }
         }
 
@@ -44,11 +48,14 @@ public class JPParametros extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jTxtCapacidadCemento = new javax.swing.JTextField();
         jBGuardar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(589, 24));
 
         jPanel1.setBackground(new java.awt.Color(208, 194, 194));
 
+        jLabel1.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
         jLabel1.setText("Capacidad Maxima:");
 
         jTxtCapacidadCemento.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -57,6 +64,7 @@ public class JPParametros extends javax.swing.JPanel {
             }
         });
 
+        jBGuardar.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
         jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-guardar-16.png"))); // NOI18N
         jBGuardar.setText("Guardar");
         jBGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,30 +72,45 @@ public class JPParametros extends javax.swing.JPanel {
                 jBGuardarMouseClicked(evt);
             }
         });
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Inter", 0, 36)); // NOI18N
+        jLabel2.setText("Parametros de Bodega");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBGuardar)
-                    .addComponent(jTxtCapacidadCemento, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtCapacidadCemento, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBGuardar))
+                    .addComponent(jLabel2))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTxtCapacidadCemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jBGuardar)
-                .addContainerGap(185, Short.MAX_VALUE))
+                    .addComponent(jTxtCapacidadCemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBGuardar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -116,17 +139,25 @@ public class JPParametros extends javax.swing.JPanel {
     private void jBGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBGuardarMouseClicked
 
         if (Integer.parseInt(jTxtCapacidadCemento.getText()) > 0) {
-            cm.setCantMaxCemento(Integer.parseInt(jTxtCapacidadCemento.getText()));
-            fm.setMaxCemento(cm.getCantMaxCemento());
+            fm.cm.setCantMaxCemento(Integer.parseInt(jTxtCapacidadCemento.getText()));
+   
+            
+            jLabel3.setText(jTxtCapacidadCemento.getText());
         }
 
 
     }//GEN-LAST:event_jBGuardarMouseClicked
 
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBGuardar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTxtCapacidadCemento;
     // End of variables declaration//GEN-END:variables

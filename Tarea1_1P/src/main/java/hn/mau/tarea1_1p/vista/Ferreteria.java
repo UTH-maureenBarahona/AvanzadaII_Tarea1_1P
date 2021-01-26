@@ -5,7 +5,7 @@
  */
 package hn.mau.tarea1_1p.vista;
 
-import hn.mau.tarea1_1p.Operaciones;
+import hn.mau.tarea1_1p.clases.Cemento;
 import java.awt.BorderLayout;
 
 /**
@@ -14,34 +14,13 @@ import java.awt.BorderLayout;
  */
 public class Ferreteria extends javax.swing.JFrame {
 
-    private int valCemento;
-    private int MaxCemento;
-
-    public int getMaxCemento() {
-        return MaxCemento;
-    }
-
-    public void setMaxCemento(int MaxCemento) {
-        this.MaxCemento = MaxCemento;
-    }
-
-    
-    
-    public int getValCemento() {
-        return valCemento;
-    }
-
-    public void setValCemento(int valCemento) {
-        this.valCemento = valCemento;
-        jLCapCemento.setText(valCemento + "");
-    }
+    Cemento cm = new Cemento();
 
     /**
      * Creates new form Ferreteria
      */
     public Ferreteria() {
         initComponents();
-         jlbMaximo.setText(getMaxCemento()+"");
 
     }
 
@@ -60,6 +39,8 @@ public class Ferreteria extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jlbMaximo = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         pnlContenedor = new javax.swing.JPanel();
         jLCapCemento = new javax.swing.JLabel();
 
@@ -69,16 +50,16 @@ public class Ferreteria extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Inter", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(240, 228, 228));
-        jLabel1.setText("Movimientos de inventario");
+        jLabel1.setText("Almacenaje de Cemento");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(244, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44))
+                .addGap(186, 186, 186))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +73,8 @@ public class Ferreteria extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(11, 7, 7));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-construction-worker-16.png"))); // NOI18N
-        jButton1.setText("Registro de capacidad de Cemento");
+        jButton1.setText("Parametros Iniciales");
+        jButton1.setPreferredSize(new java.awt.Dimension(154, 27));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -103,10 +85,31 @@ public class Ferreteria extends javax.swing.JFrame {
         });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-búsqueda-de-propiedad-16.png"))); // NOI18N
-        jButton2.setText("Operaciones");
+        jButton2.setText("Depositos de Cemento");
+        jButton2.setPreferredSize(new java.awt.Dimension(174, 27));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-botón-16.png"))); // NOI18N
+        jButton3.setText("Retiros de Cemento");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Reportes");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -115,29 +118,40 @@ public class Ferreteria extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jlbMaximo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jlbMaximo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(176, 176, 176)
+                .addGap(6, 6, 6)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addGap(86, 86, 86)
                 .addComponent(jlbMaximo)
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlContenedor.setBackground(new java.awt.Color(208, 194, 194));
+        pnlContenedor.setPreferredSize(new java.awt.Dimension(300, 500));
 
         javax.swing.GroupLayout pnlContenedorLayout = new javax.swing.GroupLayout(pnlContenedor);
         pnlContenedor.setLayout(pnlContenedorLayout);
@@ -146,7 +160,7 @@ public class Ferreteria extends javax.swing.JFrame {
             .addGroup(pnlContenedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLCapCemento, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(432, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlContenedorLayout.setVerticalGroup(
             pnlContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +178,7 @@ public class Ferreteria extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +186,7 @@ public class Ferreteria extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(pnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)))
         );
 
         pack();
@@ -180,26 +194,57 @@ public class Ferreteria extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
-        JPParametros pParametros = new JPParametros();
+        pnlParametros pParametros = new pnlParametros();
         pParametros.setSize(500, 200);
 
         pnlContenedor.removeAll();
         pnlContenedor.add(pParametros, BorderLayout.CENTER);
         pnlContenedor.revalidate();
         pnlContenedor.repaint();
-        
-       
+
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        Operaciones op = new Operaciones();
-        op.setVisible(true);
+        pnlDepositos pDepositos = new pnlDepositos();
+        pDepositos.setSize(500, 200);
+
+        pnlContenedor.removeAll();
+        pnlContenedor.add(pDepositos, BorderLayout.CENTER);
+        pnlContenedor.revalidate();
+        pnlContenedor.repaint();
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
 
 
     }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        pnlRetiros pRetiros = new pnlRetiros();
+        pRetiros.setSize(500, 200);
+
+        pnlContenedor.removeAll();
+        pnlContenedor.add(pRetiros, BorderLayout.CENTER);
+        pnlContenedor.revalidate();
+        pnlContenedor.repaint();
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        pnlReportes pReportes = new pnlReportes();
+        pReportes.setSize(500, 200);
+
+        pnlContenedor.removeAll();
+        pnlContenedor.add(pReportes, BorderLayout.CENTER);
+        pnlContenedor.revalidate();
+        pnlContenedor.repaint();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,6 +284,8 @@ public class Ferreteria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLCapCemento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

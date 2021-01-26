@@ -14,9 +14,32 @@ public class pnlDepositos extends javax.swing.JPanel {
     /**
      * Creates new form pnlDepositos
      */
+    Ferreteria ferre = new Ferreteria();
+
+
+    int contador = 0;
+    
+   private int invActual ;
+    
+    
+
     public pnlDepositos() {
         initComponents();
+        jtxtDeposito.setText(ferre.cm.getCantMaxCemento() + "");
+        jlbInventarioActual.setText((ferre.cm.getCantMaxCemento()+""));
+     
+      
     }
+
+    public int getInvActual() {
+        return invActual;
+    }
+
+    public void setInvActual(int invActual) {
+        this.invActual = invActual;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,17 +61,32 @@ public class pnlDepositos extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(208, 194, 194));
 
-        jLabel1.setFont(new java.awt.Font("Inter", 0, 24)); // NOI18N
-        jLabel1.setText("DEPOSITO");
+        jLabel1.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
+        jLabel1.setText("Deposito");
 
+        jLabel2.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
         jLabel2.setText("Cantidad de Bolsas a depositar:");
 
+        jtxtDeposito.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtxtDepositoKeyTyped(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
         jLabel3.setText("Inventario actual del almacen");
 
+        jLabel4.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
         jLabel4.setText("Capacidad libre del almacen");
 
+        jButton1.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-guardar-16.png"))); // NOI18N
         jButton1.setText("Guardar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,24 +99,22 @@ public class pnlDepositos extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(43, 43, 43)
                                 .addComponent(jblCapacidadLibre))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jlbInventarioActual, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jButton1)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                                .addComponent(jlbInventarioActual, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtxtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,20 +124,42 @@ public class pnlDepositos extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtxtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jlbInventarioActual, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jblCapacidadLibre))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtxtDepositoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtDepositoKeyTyped
+        char caracter = evt.getKeyChar();
+
+        // Verificar si la tecla pulsada no es un digito
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_jtxtDepositoKeyTyped
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if (Integer.parseInt(jtxtDeposito.getText()) > 0) {
+            ferre.cm.setIngresoCemento(Integer.parseInt(jtxtDeposito.getText()));
+            contador++;
+            ferre.cm.setCantDepositos(contador);
+            jblCapacidadLibre.setText((ferre.cm.getCapacidadAlmacen() - ferre.cm.getIngresoCemento()) + "");
+            
+        }
+        
+
+    }//GEN-LAST:event_jButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

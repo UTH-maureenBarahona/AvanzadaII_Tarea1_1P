@@ -15,13 +15,46 @@ public class Cemento {
     private int ingresoCemento;
     private int retiroCemento;
     private int inventario;
+    private int cantRetiros;
+    private int cantDepositos;
+    private int capacidadAlmacen;
 
     public Cemento() {
         super();
     }
 
-    public Cemento(int cantCemento) {
-        this.cantMaxCemento = cantCemento;
+    public Cemento(int cantMaxCemento, int ingresoCemento, int retiroCemento, int inventario, int cantRetiros, int cantDepositos, int capacidadAlmacen) {
+        this.cantMaxCemento = cantMaxCemento;
+        this.ingresoCemento = ingresoCemento;
+        this.retiroCemento = retiroCemento;
+        this.inventario = inventario;
+        this.cantRetiros = cantRetiros;
+        this.cantDepositos = cantDepositos;
+        this.capacidadAlmacen = capacidadAlmacen;
+    }
+
+    public int getCantRetiros() {
+        return cantRetiros;
+    }
+
+    public void setCantRetiros(int cantRetiros) {
+        this.cantRetiros = cantRetiros;
+    }
+
+    public int getCantDepositos() {
+        return cantDepositos;
+    }
+
+    public void setCantDepositos(int cantDepositos) {
+        this.cantDepositos = cantDepositos;
+    }
+
+    public int getCapacidadAlmacen() {
+        return capacidadAlmacen;
+    }
+
+    public void setCapacidadAlmacen(int capacidadAlmacen) {
+        this.capacidadAlmacen = capacidadAlmacen;
     }
 
     public int getInventario() {
@@ -37,7 +70,7 @@ public class Cemento {
     }
 
     public void setIngresoCemento(int ingresoCemento) {
-        this.ingresoCemento = ingresoCemento;
+        this.ingresoCemento = this.ingresoCemento + ingresoCemento;
     }
 
     public int getRetiroCemento() {
@@ -68,6 +101,8 @@ public class Cemento {
         String val = "";
         if (this.inventario - this.retiroCemento < 0) {
             val = "No puede retirar menos de la existencia de inventario";
+        } else {
+            val = (this.inventario - this.retiroCemento) + "";
         }
         return val;
     }
