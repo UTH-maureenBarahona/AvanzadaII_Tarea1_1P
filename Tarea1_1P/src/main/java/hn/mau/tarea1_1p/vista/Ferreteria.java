@@ -21,6 +21,8 @@ public class Ferreteria extends javax.swing.JFrame {
      */
     public Ferreteria() {
         initComponents();
+        //defino por defecto 3500 bolsas
+        cm.setCantMaxCemento(3500);
 
     }
 
@@ -194,8 +196,8 @@ public class Ferreteria extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
-        pnlParametros pParametros = new pnlParametros();
-        pParametros.setSize(500, 200);
+        pnlParametros pParametros = new pnlParametros(this);
+        pParametros.setSize(500, 200);        
 
         pnlContenedor.removeAll();
         pnlContenedor.add(pParametros, BorderLayout.CENTER);
@@ -206,7 +208,7 @@ public class Ferreteria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        pnlDepositos pDepositos = new pnlDepositos();
+        pnlDepositos pDepositos = new pnlDepositos(this);
         pDepositos.setSize(500, 200);
 
         pnlContenedor.removeAll();
@@ -226,7 +228,7 @@ public class Ferreteria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        pnlRetiros pRetiros = new pnlRetiros();
+        pnlRetiros pRetiros = new pnlRetiros(this);
         pRetiros.setSize(500, 200);
 
         pnlContenedor.removeAll();
@@ -237,7 +239,7 @@ public class Ferreteria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        pnlReportes pReportes = new pnlReportes();
+        pnlReportes pReportes = new pnlReportes(this);
         pReportes.setSize(500, 200);
 
         pnlContenedor.removeAll();

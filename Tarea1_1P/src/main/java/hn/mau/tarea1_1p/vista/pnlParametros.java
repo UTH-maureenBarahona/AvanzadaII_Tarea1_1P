@@ -5,8 +5,6 @@
  */
 package hn.mau.tarea1_1p.vista;
 
-import hn.mau.tarea1_1p.clases.Cemento;
-
 /**
  *
  * @author maureen
@@ -16,22 +14,25 @@ public class pnlParametros extends javax.swing.JPanel {
     /**
      * Creates new form pnlParametros
      */
-   
-    Ferreteria fm = new Ferreteria();   
-   
+    Ferreteria fm;
 
-    public pnlParametros() {
+    public pnlParametros(Ferreteria fm) {
         initComponents();
-        
-         jTxtCapacidadCemento.setText(fm.cm.getCantMaxCemento() + "");
-        
+        this.fm = fm;
+
+        jTxtCapacidadCemento.setText(fm.cm.getCantMaxCemento() + "");
+
         if ((jTxtCapacidadCemento.getText() != null && jTxtCapacidadCemento.getText().isEmpty())) {
             if (fm.cm.getCantMaxCemento() < 0) {
-                jTxtCapacidadCemento.setText("0");
+                jTxtCapacidadCemento.setText("");
             } else {
-               
+                 jTxtCapacidadCemento.setText("3500");
             }
         }
+
+    }
+
+    public pnlParametros() {
 
     }
 
@@ -140,8 +141,7 @@ public class pnlParametros extends javax.swing.JPanel {
 
         if (Integer.parseInt(jTxtCapacidadCemento.getText()) > 0) {
             fm.cm.setCantMaxCemento(Integer.parseInt(jTxtCapacidadCemento.getText()));
-   
-            
+
             jLabel3.setText(jTxtCapacidadCemento.getText());
         }
 

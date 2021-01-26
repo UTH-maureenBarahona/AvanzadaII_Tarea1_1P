@@ -5,6 +5,8 @@
  */
 package hn.mau.tarea1_1p.vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author maureen
@@ -14,32 +16,22 @@ public class pnlDepositos extends javax.swing.JPanel {
     /**
      * Creates new form pnlDepositos
      */
-    Ferreteria ferre = new Ferreteria();
-
-
     int contador = 0;
-    
-   private int invActual ;
-    
-    
+    Ferreteria ferre;
 
     public pnlDepositos() {
+
+    }
+
+    public pnlDepositos(Ferreteria ferre) {
         initComponents();
-        jtxtDeposito.setText(ferre.cm.getCantMaxCemento() + "");
-        jlbInventarioActual.setText((ferre.cm.getCantMaxCemento()+""));
-     
-      
-    }
+        this.ferre = ferre;
+        jtxtDeposito.setText(0 + "");
+        jblCapacidadLibre.setText(((ferre.cm.getCantMaxCemento() - ferre.cm.getIngresoCemento()) + ""));
+        jlbInventarioActual.setText(ferre.cm.getInventario() + "");
+        jLabel5.setText(ferre.cm.getCantDepositos() + "");
 
-    public int getInvActual() {
-        return invActual;
     }
-
-    public void setInvActual(int invActual) {
-        this.invActual = invActual;
-    }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +50,7 @@ public class pnlDepositos extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jblCapacidadLibre = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(208, 194, 194));
 
@@ -93,35 +86,38 @@ public class pnlDepositos extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(43, 43, 43)
+                            .addComponent(jblCapacidadLibre, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(jlbInventarioActual, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtxtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(43, 43, 43)
-                                .addComponent(jblCapacidadLibre))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jlbInventarioActual, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtxtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(115, 115, 115)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtxtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,10 +127,10 @@ public class pnlDepositos extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jlbInventarioActual, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jblCapacidadLibre))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jblCapacidadLibre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -151,13 +147,25 @@ public class pnlDepositos extends javax.swing.JPanel {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         if (Integer.parseInt(jtxtDeposito.getText()) > 0) {
-            ferre.cm.setIngresoCemento(Integer.parseInt(jtxtDeposito.getText()));
-            contador++;
-            ferre.cm.setCantDepositos(contador);
-            jblCapacidadLibre.setText((ferre.cm.getCapacidadAlmacen() - ferre.cm.getIngresoCemento()) + "");
-            
+            if (Integer.parseInt(jblCapacidadLibre.getText()) - Integer.parseInt(jtxtDeposito.getText()) < 0) {
+                JOptionPane.showMessageDialog(null, "Capacidad llena no se puede agregar mas", "Almacen Lleno",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+
+                ferre.cm.setIngresoCemento(Integer.parseInt(jtxtDeposito.getText()));
+                contador++;
+                ferre.cm.setCantDepositos(contador);
+                                
+                ferre.cm.setInventario(ferre.cm.getIngresoCemento()- ferre.cm.getRetiroCemento());
+                jlbInventarioActual.setText(ferre.cm.getInventario() + "");
+
+                jLabel5.setText(ferre.cm.getCantDepositos() + "");
+
+                jblCapacidadLibre.setText(((ferre.cm.getCantMaxCemento() - ferre.cm.getIngresoCemento()) + ""));
+            }
+
         }
-        
+
 
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -168,6 +176,7 @@ public class pnlDepositos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jblCapacidadLibre;
     private javax.swing.JLabel jlbInventarioActual;
     private javax.swing.JTextField jtxtDeposito;

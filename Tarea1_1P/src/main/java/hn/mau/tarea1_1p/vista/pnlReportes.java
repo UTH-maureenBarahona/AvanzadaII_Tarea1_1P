@@ -14,9 +14,24 @@ public class pnlReportes extends javax.swing.JPanel {
     /**
      * Creates new form pnlReportes
      */
-    public pnlReportes() {
-        initComponents();
+    Ferreteria fm;
+
+     public pnlReportes() {
+      
     }
+     
+    public pnlReportes(Ferreteria fm) {
+        initComponents();
+        this.fm = fm;
+        
+        jLabel7.setText(fm.cm.getCantDepositos()+"");
+        jLabel8.setText(fm.cm.getIngresoCemento()+"");
+        jLabel9.setText(fm.cm.getCantRetiros()+"");
+        jLabel10.setText(fm.cm.getRetiroCemento()+"");
+         
+    }
+     
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,8 +93,9 @@ public class pnlReportes extends javax.swing.JPanel {
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel5)
@@ -111,7 +127,7 @@ public class pnlReportes extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -121,7 +137,7 @@ public class pnlReportes extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel10))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
