@@ -17,13 +17,17 @@ public class pnlRetiros extends javax.swing.JPanel {
      * Creates new form pnlRetiros
      */
     Ferreteria ferre;
-    int contador;
+    int contador = 0;
 
     public pnlRetiros(Ferreteria ferre) {
         initComponents();
+
+        if (ferre.cm.getCantRetiros() > 0) {
+            contador = ferre.cm.getCantRetiros();
+        }
         this.ferre = ferre;
         jTxtRetiro.setText(0 + "");
-        jblCapacidadLibre.setText(((ferre.cm.getCantMaxCemento() - ferre.cm.getIngresoCemento()) + ""));
+        jblCapacidadLibre.setText((((ferre.cm.getCantMaxCemento() - ferre.cm.getIngresoCemento()) + ferre.cm.getRetiroCemento()) + ""));
         jlbInventarioActual.setText(ferre.cm.getInventario() + "");
         jLabel5.setText(ferre.cm.getCantRetiros() + "");
 
@@ -69,6 +73,11 @@ public class pnlRetiros extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-guardar-16.png"))); // NOI18N
         jButton1.setText("Guardar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -142,25 +151,7 @@ public class pnlRetiros extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (Integer.parseInt(jTxtRetiro.getText()) > 0) {
-            if (Integer.parseInt(jblCapacidadLibre.getText()) + Integer.parseInt(jTxtRetiro.getText()) < 0) {
-                JOptionPane.showMessageDialog(null, "Capacidad llena no se puede agregar mas", "Almacen Lleno",
-                        JOptionPane.INFORMATION_MESSAGE);
-            } else {
 
-                ferre.cm.setRetiroCemento(Integer.parseInt(jTxtRetiro.getText()));
-
-                contador++;
-                ferre.cm.setCantRetiros(contador);
-                ferre.cm.setInventario(ferre.cm.getIngresoCemento() - ferre.cm.getRetiroCemento());
-                jlbInventarioActual.setText(ferre.cm.getInventario() + "");
-
-                jLabel5.setText(ferre.cm.getCantRetiros() + "");
-
-                jblCapacidadLibre.setText(((ferre.cm.getCantMaxCemento() + ferre.cm.getRetiroCemento()) + ""));
-            }
-
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTxtRetiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtRetiroKeyTyped
@@ -173,6 +164,28 @@ public class pnlRetiros extends javax.swing.JPanel {
             evt.consume();  // ignorar el evento de teclado
         }
     }//GEN-LAST:event_jTxtRetiroKeyTyped
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if (Integer.parseInt(jTxtRetiro.getText()) > 0) {
+            if (ferre.cm.getInventario() < Integer.parseInt(jTxtRetiro.getText())) {
+                JOptionPane.showMessageDialog(null, "No se puede retirar mas de lo que esta en existencia", "Almacen Vacio",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+
+                ferre.cm.setRetiroCemento(Integer.parseInt(jTxtRetiro.getText()));
+
+                contador++;
+                ferre.cm.setCantRetiros(contador);
+                ferre.cm.setInventario(ferre.cm.getInventario() - ferre.cm.getRetiroCemento());
+                jlbInventarioActual.setText(ferre.cm.getInventario() + "");
+
+                jLabel5.setText(ferre.cm.getCantRetiros() + "");
+
+                jblCapacidadLibre.setText((((ferre.cm.getCantMaxCemento() - ferre.cm.getIngresoCemento()) + ferre.cm.getRetiroCemento()) + ""));
+            }
+
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

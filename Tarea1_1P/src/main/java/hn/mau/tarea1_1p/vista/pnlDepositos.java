@@ -16,8 +16,8 @@ public class pnlDepositos extends javax.swing.JPanel {
     /**
      * Creates new form pnlDepositos
      */
-    int contador = 0;
     Ferreteria ferre;
+    int contador = 0;
 
     public pnlDepositos() {
 
@@ -25,9 +25,13 @@ public class pnlDepositos extends javax.swing.JPanel {
 
     public pnlDepositos(Ferreteria ferre) {
         initComponents();
+        
+        if (ferre.cm.getCantDepositos()>0){
+        contador =ferre.cm.getCantDepositos();
+        }
         this.ferre = ferre;
         jtxtDeposito.setText(0 + "");
-        jblCapacidadLibre.setText(((ferre.cm.getCantMaxCemento() - ferre.cm.getIngresoCemento()) + ""));
+        jblCapacidadLibre.setText((((ferre.cm.getCantMaxCemento() - ferre.cm.getIngresoCemento()) + ferre.cm.getRetiroCemento()) + ""));
         jlbInventarioActual.setText(ferre.cm.getInventario() + "");
         jLabel5.setText(ferre.cm.getCantDepositos() + "");
 
@@ -155,8 +159,8 @@ public class pnlDepositos extends javax.swing.JPanel {
                 ferre.cm.setIngresoCemento(Integer.parseInt(jtxtDeposito.getText()));
                 contador++;
                 ferre.cm.setCantDepositos(contador);
-                                
-                ferre.cm.setInventario(ferre.cm.getIngresoCemento()- ferre.cm.getRetiroCemento());
+
+                ferre.cm.setInventario(ferre.cm.getIngresoCemento() - ferre.cm.getRetiroCemento());
                 jlbInventarioActual.setText(ferre.cm.getInventario() + "");
 
                 jLabel5.setText(ferre.cm.getCantDepositos() + "");

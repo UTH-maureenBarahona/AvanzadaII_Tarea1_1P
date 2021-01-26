@@ -109,6 +109,11 @@ public class Ferreteria extends javax.swing.JFrame {
         });
 
         jButton4.setText("Reportes");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -197,7 +202,7 @@ public class Ferreteria extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
         pnlParametros pParametros = new pnlParametros(this);
-        pParametros.setSize(500, 200);        
+        pParametros.setSize(500, 200);
 
         pnlContenedor.removeAll();
         pnlContenedor.add(pParametros, BorderLayout.CENTER);
@@ -239,14 +244,18 @@ public class Ferreteria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        pnlReportes pReportes = new pnlReportes(this);
-        pReportes.setSize(500, 200);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        pnlReportes pReporte = new pnlReportes(this);
+        pReporte.setSize(500, 200);
 
         pnlContenedor.removeAll();
-        pnlContenedor.add(pReportes, BorderLayout.CENTER);
+        pnlContenedor.add(pReporte, BorderLayout.CENTER);
         pnlContenedor.revalidate();
         pnlContenedor.repaint();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
